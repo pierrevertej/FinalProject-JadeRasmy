@@ -1,4 +1,4 @@
-"# FinalProject-JadeRasmy" 
+# FinalProject-JadeRasmy
 
 ## Author: Jade Rasmy, 2577651
 
