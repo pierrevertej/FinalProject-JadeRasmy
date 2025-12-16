@@ -16,14 +16,14 @@ public class Student {
     private Address address;
     private Department department;
     private ArrayList<Course> registeredCourses;
-    static int nextId = 0;
+    static int nextId = 1;
 
     public Student(String studentName, Gender gender, Address address, Department department) {
         this.studentName = studentName;
         this.gender = gender;
         this.address = address;
         this.department = department;
-        this.studentId = String.format("%05d", ++nextId);
+        this.studentId = String.format("%05d", nextId++);
         this.registeredCourses = new ArrayList<>();
     }
 
