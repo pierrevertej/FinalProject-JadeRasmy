@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 
+import static org.pierrevertej.Util.toTitleCase;
+
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -21,7 +23,7 @@ public class Course {
 
     public Course(String courseName, double credits, Department department) {
         this.courseId = generateId();
-        this.courseName = courseName;
+        this.courseName = toTitleCase(courseName);
         this.credits = credits;
         this.department = department;
         assignments = new ArrayList<Assignment>();
@@ -78,7 +80,7 @@ public class Course {
 
     public boolean addAssignment(String assignmentName, double weight, int maxScore) {
         for (Assignment assignment : assignments) {
-            if (assignment.getAssignmentName().equals(assignmentName)) {
+            if (assignment.getAssignmentName().equals(toTitleCase(assignmentName))) {
                 return false;
             }
         }
@@ -165,5 +167,9 @@ public class Course {
                 ", credits=" + this.credits + ", departmentName=" + this.department.getDepartmentName() +
                 ", assignments=" + assignments.toString() + ", registeredStudents=" + studentsList + "}";
 
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = toTitleCase(courseName);
     }
 }

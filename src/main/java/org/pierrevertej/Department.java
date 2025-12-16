@@ -2,15 +2,16 @@ package org.pierrevertej;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
+
+import static org.pierrevertej.Util.toTitleCase;
 
 @ToString
 @EqualsAndHashCode
 @Getter
 public class Department {
     private String departmentId;
-    @Setter private String departmentName;
+    private String departmentName;
     static int nextId = 1;
 
     public static boolean isDepartmentNameValid(String departmentName) {
@@ -25,11 +26,15 @@ public class Department {
 
     public Department(String departmentName) {
         if (isDepartmentNameValid(departmentName)) {
-            this.departmentName = departmentName;
+            this.departmentName = toTitleCase(departmentName);
             this.departmentId = String.format("D%02d", nextId++);
         } else {
             this.departmentName = null;
             this.departmentId = null;
         }
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = toTitleCase(departmentName);
     }
 }

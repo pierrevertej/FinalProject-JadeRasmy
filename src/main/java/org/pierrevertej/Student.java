@@ -6,20 +6,21 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 
+import static org.pierrevertej.Util.toTitleCase;
+
 @EqualsAndHashCode
 @Getter
-@Setter
 public class Student {
     private String studentId;
     private String studentName;
-    private Gender gender;
-    private Address address;
-    private Department department;
-    private ArrayList<Course> registeredCourses;
+    @Setter private Gender gender;
+    @Setter private Address address;
+    @Setter private Department department;
+    @Setter private ArrayList<Course> registeredCourses;
     static int nextId = 1;
 
     public Student(String studentName, Gender gender, Address address, Department department) {
-        this.studentName = studentName;
+        this.studentName = toTitleCase(studentName);
         this.gender = gender;
         this.address = address;
         this.department = department;
@@ -85,6 +86,10 @@ public class Student {
                 ", address=" + address.toString() +
                 ", department=" + department.toString() +
                 ", registeredCourses=" + coursesList + "}";
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = toTitleCase(studentName);
     }
 
     public enum Gender {
