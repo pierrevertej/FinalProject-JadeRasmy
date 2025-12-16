@@ -1,5 +1,6 @@
 package org.pierrevertej;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 
 @Getter
 @Setter
+@EqualsAndHashCode
 public class Course {
     private String courseId;
     private String courseName;
@@ -149,6 +151,4 @@ public class Course {
                 ", assignments=" + assignments.toString() + ", registeredStudents=" + studentsList + "}";
 
     }
-
-
 }
