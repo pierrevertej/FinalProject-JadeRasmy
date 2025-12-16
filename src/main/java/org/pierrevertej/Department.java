@@ -1,8 +1,16 @@
 package org.pierrevertej;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@ToString
+@EqualsAndHashCode
+@Getter
 public class Department {
     private String departmentId;
-    private String departmentName;
+    @Setter private String departmentName;
     static int nextId = 0;
 
     public static boolean isDepartmentNameValid(String departmentName) {
