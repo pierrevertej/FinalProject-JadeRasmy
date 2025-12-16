@@ -52,7 +52,7 @@ public class Address {
         return true;
     }
 
-    enum Province{
+    public enum Province{
         QC, ON, AB, BC, MB, NB, NL, NS, PE, SK
     }
 }

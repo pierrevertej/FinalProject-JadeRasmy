@@ -27,13 +27,67 @@ public class Student {
         this.registeredCourses = new ArrayList<>();
     }
 
+    public boolean registerCourse(Course course) {
+        for (Course registeredCourse : this.registeredCourses) {
+            if (registeredCourse.toSimplifiedString().equals(course.toSimplifiedString())) {
+                return false;
+            }
+        }
+
+        this.registeredCourses.add(course);
+        course.registerStudent(this);
+        return true;
+    }
+
+    public boolean dropCourse(Course course) {
+        boolean courseInRegisteredCourses = false;
+        for (Course registeredCourse : this.registeredCourses) {
+            if (registeredCourse.toSimplifiedString().equals(course.toSimplifiedString())) {
+                courseInRegisteredCourses = true;
+                break;
+            }
+        }
+
+        if (!courseInRegisteredCourses) {
+            return false;
+        }
+
+        this.registeredCourses.remove(course);
+        ArrayList<Student> newRegisteredStudents = new ArrayList<>();
+        for (Student student : course.getRegisteredStudents()) {
+            if (!student.toSimplifiedString().equals(this.toSimplifiedString())) {
+                newRegisteredStudents.add(student);
+            }
+        }
+
+        course.setRegisteredStudents(newRegisteredStudents);
+        return true;
+    }
+
     public String toSimplifiedString() {
         return "{studentId=" + studentId +
                 ", studentName=" + studentName +
                 ", departmentName=" + department.getDepartmentName() + "}";
     }
 
-    enum Gender {
+    @Override
+    public String toString() {
+        String coursesList = "{";
+        for (Course course : registeredCourses) {
+            coursesList += course.toSimplifiedString() + ",";
+        }
+
+        coursesList = coursesList.substring(0, coursesList.length() - 1) + "}";
+
+        return "{studentId=" + studentId +
+                ", studentName=" + studentName +
+                ", gender=" + gender +
+                ", address=" + address.toString() +
+                ", department=" + department.toString() +
+                ", registeredCourses=" + coursesList + "}";
+    }
+
+    public enum Gender {
         MALE, FEMALE
     }
 }
