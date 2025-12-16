@@ -17,6 +17,13 @@ public class Assignment {
     private ArrayList<Integer> scores;
     static int nextId = 1;
 
+    public Assignment(String assignmentName, double weight) {
+        this.assignmentId = String.format("%02d", nextId++);
+        this.assignmentName = assignmentName;
+        this.weight = weight;
+        this.scores = new ArrayList<>();
+    }
+
     public void calcAssignmentAvg() {
         if (scores == null || scores.size() == 0) {
             double avg = 0;
@@ -30,18 +37,23 @@ public class Assignment {
         }
     }
 
-    public void generateRandomScore() {
+    public void generateRandomScore(int size, int maxScore) {
         Random random = new Random();
-        int num = random.nextInt(11);
+        for (int i = 0; i < size; i++) {
+            int num = random.nextInt(11);
 
-        int score = switch(num) {
-            case 0 -> random.nextInt(60);
-            case 1, 2 -> random.nextInt(60, 70);
-            case 3, 4 -> random.nextInt(70, 80);
-            case 5, 6, 7, 8 -> random.nextInt(80, 90);
-            case 9, 10 -> random.nextInt(90, 101);
-            default -> -1;
-        };
+            int score = switch (num) {
+                case 0 -> random.nextInt(60);
+                case 1, 2 -> random.nextInt(60, 70);
+                case 3, 4 -> random.nextInt(70, 80);
+                case 5, 6, 7, 8 -> random.nextInt(80, 90);
+                case 9, 10 -> random.nextInt(90, 101);
+                default -> -1;
+            };
+
+            score = Math.min(score, maxScore);
+            scores.add(score);
+        }
     }
 
     public String toString() {
