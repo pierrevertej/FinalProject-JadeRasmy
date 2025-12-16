@@ -23,6 +23,7 @@ public class Assignment {
         this.assignmentName = assignmentName;
         this.weight = weight;
         this.scores = new ArrayList<>();
+        this.maxScore = maxScore;
     }
 
     /**
