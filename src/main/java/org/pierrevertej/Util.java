@@ -3,6 +3,10 @@ package org.pierrevertej;
 public class Util {
 
     public static String toTitleCase(String str) {
+        if (str == null || str.isEmpty()) {
+            return str;
+        }
+
         String titlecase = "";
         String[] words = str.split(" ");
         for (String word : words) {

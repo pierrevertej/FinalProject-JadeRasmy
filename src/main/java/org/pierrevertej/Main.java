@@ -4,8 +4,11 @@ public class Main {
     public static void main(String[] args) {
         // testing in main for displayScores() and generateScores()
         Department compsci = new Department("Computer Science");
+
         Course course = new Course("Introduction to Programming", 2, compsci);
+
         Address address = new Address(1, "Main street", "Montreal", Address.Province.QC, "A1B2C3");
+
         Student student1 = new Student("Jade Rasmy", Student.Gender.MALE, address, compsci);
         Student student2 = new Student("Mike Tyson", Student.Gender.MALE, address, compsci);
         Student student3 = new Student("Muhammad Ali", Student.Gender.MALE, address, compsci);
