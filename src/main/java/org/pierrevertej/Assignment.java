@@ -1,8 +1,15 @@
 package org.pierrevertej;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.Random;
 
+@Getter
+@Setter
+@EqualsAndHashCode
 public class Assignment {
     private String assignmentId;
     private String assignmentName;
@@ -11,7 +18,7 @@ public class Assignment {
     static int nextId = 1;
 
     public void calcAssignmentAvg() {
-        if (scores.size() == 0 || scores == null) {
+        if (scores == null || scores.size() == 0) {
             double avg = 0;
         } else {
             double sum = 0;

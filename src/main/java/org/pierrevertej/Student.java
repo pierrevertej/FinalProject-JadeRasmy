@@ -23,7 +23,7 @@ public class Student {
         this.gender = gender;
         this.address = address;
         this.department = department;
-        this.studentId = String.format("%05d", nextId++);
+        this.studentId = String.format("S%06d", nextId++);
         this.registeredCourses = new ArrayList<>();
     }
 
