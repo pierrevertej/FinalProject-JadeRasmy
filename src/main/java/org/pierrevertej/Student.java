@@ -28,6 +28,14 @@ public class Student {
         this.registeredCourses = new ArrayList<>();
     }
 
+    /**
+     * Registers a course, this method (1) adds the course to the student's `registeredCourses` list,
+     * (2) adds the `student` to the course's `registeredStudents` list,
+     * (3) appends a `null` for the `scores` of each assignment of the course.
+     * If the course is already registered (exists in the student's `registeredCourses` list), directly returns `false` without adding anything.
+     * @param course course to register to
+     * @return false if the student is already registered to that course, true if he isn't
+     */
     public boolean registerCourse(Course course) {
         for (Course registeredCourse : this.registeredCourses) {
             if (registeredCourse.toSimplifiedString().equals(course.toSimplifiedString())) {
@@ -40,6 +48,12 @@ public class Student {
         return true;
     }
 
+    /**
+     * drops a course, remove the course from the student's `registeredCourses` list, and remove the student from the course's `registeredStudents` list.
+     * If the course is not registered yet (not in the student's `registeredCourses` list), directly returns `false` without removing anything.
+     * @param course the course to drop
+     * @return false if the student isn't registered to that course, true if he is
+     */
     public boolean dropCourse(Course course) {
         boolean courseInRegisteredCourses = false;
         for (Course registeredCourse : this.registeredCourses) {
@@ -65,6 +79,10 @@ public class Student {
         return true;
     }
 
+    /**
+     * toString with only studentId, studentName and departmentName
+     * @return string with fields
+     */
     public String toSimplifiedString() {
         return "{studentId=" + studentId +
                 ", studentName=" + studentName +

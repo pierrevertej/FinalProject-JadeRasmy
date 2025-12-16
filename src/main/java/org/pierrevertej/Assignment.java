@@ -25,6 +25,10 @@ public class Assignment {
         this.scores = new ArrayList<>();
     }
 
+    /**
+     * calculates the average score for the assignment
+     * @return returns the average score
+     */
     public int calcAssignmentAvg() {
         if (scores == null || scores.size() == 0) {
             return 0;
@@ -38,6 +42,16 @@ public class Assignment {
         return (int) (sum / scores.size());
     }
 
+    /**
+     * 1. generates random scores for all students in an assignment, the scores are generated with the following rule: Firstly generate a random number in range `[0, 10]`, then
+     *    - if the number is `0`, then generate a random score in range `[0, 60)` for the student;
+     *    - if the number is `1`, `2`, then generate a random score in range `[60, 70)` for the student;
+     *    - if the number is `3`, `4`, then generate a random score in range `[70, 80)` for the student;
+     *    - if the number is `5`, `6`, `7`, `8`, then generate a random score in range `[80, 90)` for the student;
+     *    - if the number is `9`, `10`, then generate a random score in range `[90, 100]` for the student;
+     * if the generate score is greater than the max score, the student is given the max score for the assignment
+     * @param size number of students registered to the course of the assignment
+     */
     public void generateRandomScore(int size) {
         ArrayList<Integer> randomScores = new ArrayList<Integer>();
         for (int i = 0; i < size; i++) {

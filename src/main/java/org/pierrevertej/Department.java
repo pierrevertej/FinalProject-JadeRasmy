@@ -14,6 +14,11 @@ public class Department {
     private String departmentName;
     static int nextId = 1;
 
+    /**
+     * checks if a department name is valid or not, a department name should only contain letters or space
+     * @param departmentName department name to check
+     * @return true or false depending on if its valid
+     */
     public static boolean isDepartmentNameValid(String departmentName) {
         for (int i = 0; i < departmentName.length(); i++) {
             if (!Character.isLetter(departmentName.charAt(i)) || departmentName.charAt(i) != ' ') {

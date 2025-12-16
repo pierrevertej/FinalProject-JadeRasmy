@@ -34,6 +34,12 @@ public class Address {
         }
     }
 
+    /**
+     * checks if a postcode is valid or not. The length of a postal code can only be `6`.
+     * 1. the postcode must follow the format: `CDCDCD`, where `C` is a character, while `D` is a digit, such as `A1B2C3`.
+      * @param postalCode the postal code to check
+     * @return true or false depending on if its valid
+     */
     private static boolean isPostalCodeValid(String postalCode) {
         if (postalCode.length() != 6) {
             return false;
