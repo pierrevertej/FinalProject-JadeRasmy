@@ -62,7 +62,16 @@ public class Course {
             }
         }
 
-        registeredStudents.add(student);
+        ArrayList<Student> students = new ArrayList<>();
+        students.addAll(registeredStudents);
+        students.add(student);
+        this.setRegisteredStudents(students);
+
+        ArrayList<Course> courses = new ArrayList<>();
+        courses.addAll(student.getRegisteredCourses());
+        courses.add(this);
+        student.setRegisteredCourses(courses);
+
         finalScores.add(null);
         for (Assignment assignment : assignments) {
             assignment.getScores().add(null);
