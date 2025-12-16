@@ -40,11 +40,11 @@ public class Address {
         }
 
         for (int i = 0; i < 6; i++) {
-            if (i % 2 == 0 && !Character.isDigit(postalCode.charAt(i))) {
+            if (i % 2 == 1 && !Character.isDigit(postalCode.charAt(i))) {
                 return false;
             }
 
-            else if (i % 2 == 1 && !Character.isLetter(postalCode.charAt(i))) {
+            else if (i % 2 == 0 && !Character.isLetter(postalCode.charAt(i))) {
                 return false;
             }
         }
