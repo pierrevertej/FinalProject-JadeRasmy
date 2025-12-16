@@ -16,7 +16,7 @@ public class Assignment {
     private double weight;
     private ArrayList<Integer> scores;
     private int maxScore;
-    static int nextId = 1;
+    private static int nextId = 1;
 
     public Assignment(String assignmentName, double weight, int maxScore) {
         this.assignmentId = String.format("%02d", nextId++);

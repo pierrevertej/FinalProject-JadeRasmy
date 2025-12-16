@@ -17,7 +17,7 @@ public class Student {
     @Setter private Address address;
     @Setter private Department department;
     @Setter private ArrayList<Course> registeredCourses;
-    static int nextId = 1;
+    private static int nextId = 1;
 
     public Student(String studentName, Gender gender, Address address, Department department) {
         this.studentName = toTitleCase(studentName);

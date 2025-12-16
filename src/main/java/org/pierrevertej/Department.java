@@ -12,7 +12,7 @@ import static org.pierrevertej.Util.toTitleCase;
 public class Department {
     private String departmentId;
     private String departmentName;
-    static int nextId = 1;
+    private static int nextId = 1;
 
     public Department(String departmentName) {
         if (isDepartmentNameValid(departmentName)) {

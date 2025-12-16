@@ -19,7 +19,7 @@ public class Course {
     private ArrayList<Assignment> assignments;
     private ArrayList<Student> registeredStudents;
     private ArrayList<Integer> finalScores;
-    static int nextId = 1;
+    private static int nextId = 1;
 
     public Course(String courseName, double credits, Department department) {
         this.courseName = toTitleCase(courseName);
