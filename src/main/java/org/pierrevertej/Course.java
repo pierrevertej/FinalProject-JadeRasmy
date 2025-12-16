@@ -30,7 +30,7 @@ public class Course {
     }
 
     public boolean isAssignmentWeightValid() {
-        if (assignments == null || assignments.size() == 0) {
+        if (assignments == null || assignments.isEmpty()) {
             return false;
         }
 
@@ -42,12 +42,20 @@ public class Course {
         return sum == 100;
     }
 
-    public void registerStudent(Student student) {
+    public boolean registerStudent(Student student) {
+        for (Student registeredStudent : registeredStudents) {
+            if (registeredStudent.toSimplifiedString().equals(student.toSimplifiedString())) {
+                return false;
+            }
+        }
+
         registeredStudents.add(student);
         finalScores.add(null);
         for (Assignment assignment : assignments) {
             assignment.getScores().add(null);
         }
+
+        return true;
     }
 
     public int[] calcStudentsAverage() {
@@ -68,9 +76,16 @@ public class Course {
         return avgs;
     }
 
-    public void addAssignment(String assignmentName, double weight, int maxScore) {
+    public boolean addAssignment(String assignmentName, double weight, int maxScore) {
+        for (Assignment assignment : assignments) {
+            if (assignment.getAssignmentName().equals(assignmentName)) {
+                return false;
+            }
+        }
+
         Assignment assignment = new Assignment(assignmentName, weight, maxScore);
         assignments.add(assignment);
+        return true;
     }
 
     public void generateScores() {
