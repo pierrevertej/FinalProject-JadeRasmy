@@ -17,6 +17,16 @@ public class Course {
     private ArrayList<Integer> finalScores;
     static int nextId = 1;
 
+    public Course(String courseName, double credits, Department department) {
+        this.courseId = generateId();
+        this.courseName = courseName;
+        this.credits = credits;
+        this.department = department;
+        assignments = new ArrayList<Assignment>();
+        registeredStudents = new ArrayList<Student>();
+        finalScores = new ArrayList<Integer>();
+    }
+
     public boolean isAssignmentWeightValid() {
         if (assignments == null || assignments.size() == 0) {
             return false;
@@ -52,5 +62,93 @@ public class Course {
 
             avgs[i] = (int) (sum / 100);
         }
+
+        return avgs;
     }
+
+    public void addAssignment(String assignmentName, double weight, int maxScore) {
+        Assignment assignment = new Assignment(assignmentName, weight, maxScore);
+        assignments.add(assignment);
+    }
+
+    public void generateScores() {
+        ArrayList<Integer> scores = new ArrayList<>();
+        for (Assignment assignment : assignments) {
+            assignment.generateRandomScore(registeredStudents.size());
+        }
+
+        this.finalScores = new ArrayList<Integer>();
+        for (int avg : calcStudentsAverage()) {
+            finalScores.add(avg);
+        }
+    }
+
+    private String generateId() {
+        return String.format("C-%s-%02d", this.department.getDepartmentId(), nextId++);
+    }
+
+    private int calculateClassAverage() {
+        if (finalScores == null || finalScores.size() == 0) {
+            return 0;
+        }
+
+        int sum = 0;
+        for (Integer finalScore : finalScores) {
+            sum += finalScore;
+        }
+
+        return (int) (sum /  finalScores.size());
+    }
+
+    public void displayScores() {
+        System.out.printf("Course: %s(%s)\n", this.courseName, this.courseId);
+        String assignmentsLine = String.format("%20s", "");
+        for (Assignment assignment : assignments) {
+            assignmentsLine += String.format("%15s", assignment.getAssignmentName());
+        }
+
+        assignmentsLine += String.format("%15s", "Final Score");
+
+        System.out.printf("%s\n", assignmentsLine);
+
+        for (int i = 0; i < registeredStudents.size(); i++) {
+            String studentLine = String.format("%20s", registeredStudents.get(i).getStudentName());
+            for (Assignment assignment : assignments) {
+                studentLine += String.format("%15d", assignment.getScores().get(i));
+            }
+
+            studentLine += String.format("%15d", finalScores.get(i));
+            System.out.printf("%s\n", studentLine);
+        }
+
+        String averageLine = String.format("%20s", "Average");
+        for (Assignment assignment : assignments) {
+            averageLine += String.format("%15d", assignment.calcAssignmentAvg());
+        }
+
+        averageLine += String.format("%15d", calculateClassAverage());
+        System.out.printf("%s\n", averageLine);
+    }
+
+    public String toSimplifiedString() {
+        return "{courseId=" + this.courseId + ", courseName=" + this.courseName +
+                ", credits=" + this.credits + ", departmentName=" + this.department.getDepartmentName() + "}";
+    }
+
+    @Override
+    public String toString() {
+        String studentsList = "{";
+        for (Student student : registeredStudents) {
+            studentsList += student.toSimplifiedString() + ",";
+        }
+
+        studentsList = studentsList.substring(0, studentsList.length() - 1) + "}";
+
+        return "{courseId=" + this.courseId + ", courseName=" + this.courseName +
+                ", credits=" + this.credits + ", departmentName=" + this.department.getDepartmentName() +
+                ", assignments=" + assignments.toString() + ", registeredStudents=" + studentsList + "}";
+
+    }
+
+
 }
