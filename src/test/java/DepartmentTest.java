@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 import org.pierrevertej.Department;
 
 public class DepartmentTest {
-    @DisplayName("isDepartmentNameValid: Introduction to Programming -> true")
+    @DisplayName("isDepartmentNameValid: Computer Science -> true")
     @Test
     void isDepartmentNameValid1() {
-        String departmentName = "Introduction to Programming";
+        String departmentName = "Computer Science";
         boolean expected = true;
         boolean actual = Department.isDepartmentNameValid(departmentName);
         Assertions.assertEquals(expected, actual);

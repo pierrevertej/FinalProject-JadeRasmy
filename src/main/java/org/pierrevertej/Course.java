@@ -22,10 +22,10 @@ public class Course {
     static int nextId = 1;
 
     public Course(String courseName, double credits, Department department) {
-        this.courseId = generateId();
         this.courseName = toTitleCase(courseName);
         this.credits = credits;
         this.department = department;
+        this.courseId = generateId(); // I need the id to initialize after the department to use departmentId
         assignments = new ArrayList<Assignment>();
         registeredStudents = new ArrayList<Student>();
         finalScores = new ArrayList<Integer>();
@@ -135,7 +135,7 @@ public class Course {
      * @return the courseId
      */
     private String generateId() {
-        return String.format("C-%s-%02d", this.department.getDepartmentId(), nextId++);
+        return String.format("C-%s-%02d", department.getDepartmentId(), nextId++);
     }
 
     /**
@@ -191,7 +191,7 @@ public class Course {
 
     /**
      * toString method that only contains the courseId, courseName, credits and departmentName
-     * @return
+     * @return the string containing these fields
      */
     public String toSimplifiedString() {
         return "{courseId=" + this.courseId + ", courseName=" + this.courseName +
