@@ -7,6 +7,24 @@ public class Address {
     private Province province;
     private String postalCode;
 
+    public Address(int streetNo, String street, String city, Province province, String postalCode) {
+        if (isPostalCodeValid(postalCode)) {
+            this.streetNo = streetNo;
+            this.street = street;
+            this.city = city;
+            this.province = province;
+            this.postalCode = postalCode.toUpperCase();
+        }
+
+        else {
+            this.streetNo = -1;
+            this.street = null;
+            this.city = null;
+            this.province = null;
+            this.postalCode = null;
+        }
+    }
+
     private static boolean isPostalCodeValid(String postalCode) {
         if (postalCode.length() != 6) {
             return false;
@@ -23,7 +41,6 @@ public class Address {
         }
 
         return true;
-
     }
 
     enum Province{
